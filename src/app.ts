@@ -36,7 +36,7 @@ app.get('/', (req: Request, res: Response) => {
 
 /* VARIABLES */
 const PORT = process.env.PORT || 4000;
-const URI = process.env.MONGO_URI;
+const URI = process.env.MONGO_URI as string;
 
 /* DB CONNECTION */
 mongoose
