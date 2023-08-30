@@ -10,7 +10,8 @@
     "lint:check": "eslint . --ext .js,.ts --config .eslintrc-config.js",
     "lint:fix": "eslint . --ext .js,.ts --fix --config .eslintrc-config.js",
     "prettier:check": "prettier --check .",
-    "prettier:fix": "prettier --write ."
+    "prettier:fix": "prettier --write .",
+    "prepare": "husky install"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -38,14 +39,13 @@
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-import": "^2.28.1",
     "eslint-plugin-prettier": "^5.0.0",
-    "husky": "^8.0.3",
+    "husky": "^8.0.0",
     "nodemon": "^2.0.15",
     "prettier": "^3.0.3"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn lint:check",
-      "pre-push": "yarn test"
+      "pre-commit": ".husky/pre-commit"
     }
   }
 }
