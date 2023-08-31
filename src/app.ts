@@ -8,47 +8,58 @@ import mongoSanitize from 'express-mongo-sanitize';
 import rateLimit from 'express-rate-limit';
 import hpp from 'hpp';
 
-// .env configuration
+class App {
+  private app: Application;
+
+  constructor() {
+    this.app = express();
+    this.configureMiddlewares();
+    this.setupRoutes();
+    this.connectToDatabase();
+  }
+
+  private configureMiddlewares(): void {
+    this.app.use(express.json());
+    this.app.use(express.urlencoded({ extended: true }));
+    this.app.use(cors());
+    this.app.use(morgan('dev'));
+    this.app.use(helmet());
+    this.app.use(
+      rateLimit({
+        windowMs: 10 * 60 * 1000,
+        max: 100,
+      })
+    );
+    this.app.use(mongoSanitize());
+    this.app.use(hpp());
+  }
+
+  private setupRoutes(): void {
+    this.app.get('/', (req: Request, res: Response) => {
+      res.status(200).json({
+        message: 'Server is up and running, waiting for human to handle! 😎',
+      });
+    });
+  }
+
+  private connectToDatabase(): void {
+    const URI = process.env.MONGO_URI as string;
+
+    mongoose
+      .connect(URI)
+      .then(() => {
+        const PORT = process.env.PORT || 4000;
+
+        this.app.listen(PORT, () => {
+          console.log(`✅ Server is up and running on port: ${PORT}`);
+        });
+      })
+      .catch((error) => {
+        console.error('❌ Error connecting to MongoDB:', error);
+      });
+  }
+}
+
 dotenv.config();
 
-// express app
-const app: Application = express();
-
-// middlewares
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(cors());
-app.use(morgan('dev'));
-app.use(helmet());
-app.use(
-  rateLimit({
-    windowMs: 10 * 60 * 1000, // 10 min.
-    max: 100, // 100 req. limit
-  })
-);
-app.use(mongoSanitize()); // prevents NoSQL injection attacks
-app.use(hpp()); // prevents multiple instances of the same parameter
-
-// basic api route
-app.get('/', (req: Request, res: Response) => {
-  res.status(200).json({
-    message: 'Server is up and running, waiting for human to handle! 😎',
-  });
-});
-
-// curated variables
-const PORT = process.env.PORT || 4000;
-const URI = process.env.MONGO_URI as string;
-
-// db connection
-mongoose
-  .connect(URI)
-  .then(() => {
-    // server listening
-    app.listen(PORT, () => {
-      console.log(`✅ Server is up and running on port: ${PORT}`);
-    });
-  })
-  .catch((error) => {
-    console.error('❌ Error connecting to MongoDB:', error);
-  });
+new App();
