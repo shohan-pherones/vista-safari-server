@@ -1,18 +1,23 @@
 import { Request, Response } from 'express';
-import LocationModel from '../models/location.model';
+import TourPackageModel from '../models/tour_package.model';
 import mongoose from 'mongoose';
 
-class LocationController {
-  public static async createLocation(
+class TourPackageController {
+  public static async createTourPackage(
     req: Request,
     res: Response
   ): Promise<void> {
-    const { name } = req.body;
+    const { name, price, date, location } = req.body;
 
     try {
-      const newLocation = await LocationModel.create({ name });
+      const newTourPackage = await TourPackageModel.create({
+        name,
+        price,
+        date,
+        location,
+      });
 
-      res.status(200).json(newLocation);
+      res.status(200).json(newTourPackage);
     } catch (error: unknown) {
       if (error instanceof Error) {
         res.status(400).json({ message: error.message });
@@ -22,11 +27,14 @@ class LocationController {
     }
   }
 
-  public static async getLocations(req: Request, res: Response): Promise<void> {
+  public static async getTourPackages(
+    req: Request,
+    res: Response
+  ): Promise<void> {
     try {
-      const locations = await LocationModel.find();
+      const tourPackages = await TourPackageModel.find();
 
-      res.status(200).json(locations);
+      res.status(200).json(tourPackages);
     } catch (error: unknown) {
       if (error instanceof Error) {
         res.status(400).json({ message: error.message });
@@ -36,23 +44,24 @@ class LocationController {
     }
   }
 
-  public static async getLocation(req: Request, res: Response): Promise<void> {
+  public static async getTourPackage(
+    req: Request,
+    res: Response
+  ): Promise<void> {
     const { id } = req.params;
 
     try {
       if (!mongoose.isValidObjectId(id)) {
-        throw new Error('Invalid location ID');
+        throw new Error('Invalid tour package ID');
       }
 
-      const location = await LocationModel.findById(id)
-        .populate('tourPackages')
-        .exec();
+      const tourPackage = await TourPackageModel.findById(id);
 
-      if (!location) {
-        throw new Error('No location found');
+      if (!tourPackage) {
+        throw new Error('No tour package found');
       }
 
-      res.status(200).json(location);
+      res.status(200).json(tourPackage);
     } catch (error: unknown) {
       if (error instanceof Error) {
         res.status(400).json({ message: error.message });
@@ -63,4 +72,4 @@ class LocationController {
   }
 }
 
-export default LocationController;
+export default TourPackageController;

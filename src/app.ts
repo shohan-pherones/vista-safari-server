@@ -8,6 +8,7 @@ import mongoSanitize from 'express-mongo-sanitize';
 import rateLimit from 'express-rate-limit';
 import hpp from 'hpp';
 import locationRouter from './routes/location.route';
+import tourPackageRouter from './routes/tour_package.route';
 
 class App {
   private app: Application;
@@ -43,6 +44,7 @@ class App {
     });
 
     this.app.use('/api/locations', locationRouter);
+    this.app.use('/api/tour_packages', tourPackageRouter);
   }
 
   private connectToDatabase(): void {
