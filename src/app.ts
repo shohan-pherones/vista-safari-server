@@ -7,6 +7,7 @@ import helmet from 'helmet';
 import mongoSanitize from 'express-mongo-sanitize';
 import rateLimit from 'express-rate-limit';
 import hpp from 'hpp';
+import locationRouter from './routes/location.route';
 
 class App {
   private app: Application;
@@ -40,6 +41,8 @@ class App {
         message: 'Server is up and running, waiting for human to handle! 😎',
       });
     });
+
+    this.app.use('/api/locations', locationRouter);
   }
 
   private connectToDatabase(): void {
