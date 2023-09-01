@@ -7,8 +7,14 @@ import helmet from 'helmet';
 import mongoSanitize from 'express-mongo-sanitize';
 import rateLimit from 'express-rate-limit';
 import hpp from 'hpp';
+import userRouter from './routes/user.route';
 import locationRouter from './routes/location.route';
+import spotRouter from './routes/spot.route';
+import resortRouter from './routes/resort.route';
+import restaurantRouter from './routes/restaurant.route';
 import tourPackageRouter from './routes/tour_package.route';
+import bookingRouter from './routes/booking.route';
+import paymentRouter from './routes/payment.route';
 
 class App {
   private app: Application;
@@ -43,8 +49,15 @@ class App {
       });
     });
 
+    // bypassed routes
+    this.app.use('/api/users', userRouter);
     this.app.use('/api/locations', locationRouter);
-    this.app.use('/api/tour_packages', tourPackageRouter);
+    this.app.use('/api/locations/:id/spots', spotRouter);
+    this.app.use('/api/locations/:id/resorts', resortRouter);
+    this.app.use('/api/locations/:id/restaurants', restaurantRouter);
+    this.app.use('/api/locations/:id/tour_packages', tourPackageRouter);
+    this.app.use('/api/bookings', bookingRouter);
+    this.app.use('/api/payments', paymentRouter);
   }
 
   private connectToDatabase(): void {

@@ -1,10 +1,20 @@
 import express, { Router } from 'express';
-import TourPackageController from '../controllers/tour_package.controller';
 
 const tourPackageRouter: Router = express.Router();
 
-tourPackageRouter.post('/', TourPackageController.createTourPackage);
-tourPackageRouter.get('/', TourPackageController.getTourPackages);
-tourPackageRouter.get('/:id', TourPackageController.getTourPackage);
+// add tourPackage
+tourPackageRouter.post('/');
+
+// update tourPackage
+tourPackageRouter.put('/:id');
+
+// delete tourPackage
+tourPackageRouter.delete('/:id');
+
+// get all tourPackages
+tourPackageRouter.get('/');
+
+// get a tourPackage
+tourPackageRouter.get('/:id');
 
 export default tourPackageRouter;

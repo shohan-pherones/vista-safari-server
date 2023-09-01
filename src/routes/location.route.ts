@@ -1,10 +1,20 @@
 import express, { Router } from 'express';
-import LocationController from '../controllers/location.controller';
 
 const locationRouter: Router = express.Router();
 
-locationRouter.post('/', LocationController.createLocation);
-locationRouter.get('/', LocationController.getLocations);
-locationRouter.get('/:id', LocationController.getLocation);
+// add location
+locationRouter.post('/');
+
+// update location
+locationRouter.put('/:id');
+
+// delete location
+locationRouter.delete('/:id');
+
+// get all locations
+locationRouter.get('/');
+
+// get a location
+locationRouter.get('/:id');
 
 export default locationRouter;
