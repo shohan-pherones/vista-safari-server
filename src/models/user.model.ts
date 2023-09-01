@@ -1,7 +1,7 @@
 import mongoose, { Schema, model } from 'mongoose';
 import { User } from '../types/user.type';
 
-const userSchema = new Schema<User>(
+export const userSchema = new Schema<User>(
   {
     name: {
       type: String,
