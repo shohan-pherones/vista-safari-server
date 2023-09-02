@@ -11,7 +11,8 @@
     "lint:fix": "eslint . --ext .js,.ts --fix --config .eslintrc-config.js",
     "prettier:check": "prettier --check .",
     "prettier:fix": "prettier --write .",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "up": "bash upgrade.sh"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
@@ -30,11 +31,10 @@
     "@types/bcrypt": "^5.0.0",
     "@types/cors": "^2.8.13",
     "@types/express": "^4.17.17",
-    "@types/express-rate-limit": "^6.0.0",
     "@types/hpp": "^0.2.2",
     "@types/jsonwebtoken": "^9.0.2",
-    "@types/mongoose": "^5.11.97",
     "@types/morgan": "^1.9.5",
+    "@types/node": "^20.5.8",
     "@types/validator": "^13.11.1",
     "@typescript-eslint/eslint-plugin": "^6.5.0",
     "@typescript-eslint/parser": "^6.5.0",
@@ -44,7 +44,7 @@
     "eslint-plugin-prettier": "^5.0.0",
     "husky": "^8.0.0",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.15",
+    "nodemon": "^3.0.1",
     "prettier": "^3.0.3",
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2"
