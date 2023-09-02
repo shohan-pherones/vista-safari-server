@@ -1,4 +1,5 @@
-import { User, UserModelInterface } from '../types/user.type';
+import { User } from '../types/user.type';
+import { UserModelInterface } from '../interfaces/user.interface';
 import mongoose, { Schema, model } from 'mongoose';
 import validator from 'validator';
 import bcrypt from 'bcrypt';

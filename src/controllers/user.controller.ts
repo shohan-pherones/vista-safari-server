@@ -23,8 +23,8 @@ export default class UserController {
           phoneNumber
         );
 
-        const ipAddress = req.ip;
-        const token = jwtTokenManager.createToken(user._id, ipAddress);
+        const token = jwtTokenManager.createToken(user._id);
+
         res.status(200).json({ user, token });
       });
     } catch (error: unknown) {
@@ -39,8 +39,8 @@ export default class UserController {
       await Promise.resolve().then(async () => {
         const user = await UserModel.login(email, password);
 
-        const ipAddress = req.ip;
-        const token = jwtTokenManager.createToken(user._id, ipAddress);
+        const token = jwtTokenManager.createToken(user._id);
+
         res.status(200).json({ user, token });
       });
     } catch (error) {
