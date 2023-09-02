@@ -1,5 +1,5 @@
 import dotenv from 'dotenv';
-import jwt from 'jsonwebtoken';
+import jwt, { JwtPayload } from 'jsonwebtoken';
 
 dotenv.config();
 
@@ -12,11 +12,25 @@ export default class JWTTokenManager {
     this.expiresIn = '7d';
   }
 
-  createToken(id: string): string {
-    const token = jwt.sign({ id }, this.secret, {
-      expiresIn: this.expiresIn,
-    });
+  public createToken(id: string): string {
+    try {
+      const token = jwt.sign({ id }, this.secret, {
+        expiresIn: this.expiresIn,
+      });
 
-    return token;
+      return token;
+    } catch (error) {
+      throw new Error('Token creation failed');
+    }
+  }
+
+  public verifyToken(token: string): JwtPayload | string | object {
+    try {
+      const payload = jwt.verify(token, this.secret);
+
+      return payload;
+    } catch (error) {
+      throw new Error('Token verification failed');
+    }
   }
 }
