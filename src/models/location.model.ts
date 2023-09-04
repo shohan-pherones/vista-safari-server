@@ -5,6 +5,7 @@ const locationSchema = new Schema<Location>(
   {
     name: { type: String, required: true },
     photoUrl: { type: String, required: true },
+    description: { type: String, required: true },
     tourPackages: [
       {
         type: mongoose.Schema.Types.ObjectId,

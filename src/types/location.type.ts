@@ -7,6 +7,7 @@ import { Restaurant } from './restaurant.type';
 export type Location = {
   name: string;
   photoUrl: string;
+  description: string;
   spots: Spot[];
   resorts: Resort[];
   restaurants: Restaurant[];
