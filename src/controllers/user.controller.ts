@@ -74,6 +74,61 @@ export default class UserController {
     }
   }
 
+  public async updateAnUser(req: Request, res: Response): Promise<void> {
+    try {
+      const { id } = req.params;
+      const userId = req.user?._id;
+      const { name, photoUrl, address, phoneNumber } = req.body;
+
+      if (!mongoose.Types.ObjectId.isValid(id)) {
+        res.status(404).json({ message: 'User not found' });
+        return;
+      }
+
+      if (id !== userId?.toString()) {
+        res.status(403).json({ message: 'Forbidden' });
+        return;
+      }
+
+      await Promise.resolve().then(async () => {
+        const user = await UserModel.findByIdAndUpdate(
+          id,
+          { name, photoUrl, address, phoneNumber },
+          { new: true }
+        );
+
+        res.status(200).json(user);
+      });
+    } catch (error) {
+      await handleError(error, res);
+    }
+  }
+
+  public async deleteAnUser(req: Request, res: Response): Promise<void> {
+    try {
+      const { id } = req.params;
+      const userId = req.user?._id;
+
+      if (!mongoose.Types.ObjectId.isValid(id)) {
+        res.status(404).json({ message: 'User not found' });
+        return;
+      }
+
+      if (id !== userId?.toString()) {
+        res.status(403).json({ message: 'Forbidden' });
+        return;
+      }
+
+      await Promise.resolve().then(async () => {
+        const user = await UserModel.findByIdAndDelete(id);
+
+        res.status(200).json(user);
+      });
+    } catch (error) {
+      await handleError(error, res);
+    }
+  }
+
   public async getAllUsers(req: Request, res: Response): Promise<void> {
     try {
       await Promise.resolve().then(async () => {

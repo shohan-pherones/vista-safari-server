@@ -17,10 +17,10 @@ userRouter.post('/login', userInstance.login);
 userRouter.get('/:id', authMiddleware.verifyUser, userInstance.getAnUser);
 
 // update an user
-userRouter.put('/:id', authMiddleware.verifyUser);
+userRouter.put('/:id', authMiddleware.verifyUser, userInstance.updateAnUser);
 
 // delete an user
-userRouter.delete('/:id', authMiddleware.verifyUser);
+userRouter.delete('/:id', authMiddleware.verifyUser, userInstance.deleteAnUser);
 
 // get all users
 userRouter.get(
