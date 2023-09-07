@@ -28,7 +28,9 @@ export default class LocationController {
       }
 
       await Promise.resolve().then(async () => {
-        const location = await LocationModel.findById(id);
+        const location = await LocationModel.findById(id)
+          .populate('resorts')
+          .exec();
 
         res.status(200).json(location);
       });
