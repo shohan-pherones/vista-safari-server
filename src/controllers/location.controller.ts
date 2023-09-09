@@ -29,7 +29,7 @@ export default class LocationController {
 
       await Promise.resolve().then(async () => {
         const location = await LocationModel.findById(id)
-          .populate('resorts restaurants')
+          .populate('resorts restaurants spots')
           .exec();
 
         res.status(200).json(location);
