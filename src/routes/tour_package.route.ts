@@ -1,20 +1,46 @@
 import express, { Router } from 'express';
+import TourPackageController from '../controllers/tour_package.controller';
+import AuthMiddleware from '../middlewares/auth.middleware';
 
 const tourPackageRouter: Router = express.Router();
 
-// add tourPackage
-tourPackageRouter.post('/');
+const tourPackageInstance = new TourPackageController();
+const authMiddleware = new AuthMiddleware();
 
-// update tourPackage
-tourPackageRouter.put('/:id');
+// get all tour packages
+tourPackageRouter.get(
+  '/:id/tour_packages',
+  tourPackageInstance.getAllTourPackages
+);
 
-// delete tourPackage
-tourPackageRouter.delete('/:id');
+// get a tour package
+tourPackageRouter.get(
+  '/:id/tour_packages/:tid',
+  tourPackageInstance.getATourPackage
+);
 
-// get all tourPackages
-tourPackageRouter.get('/');
+// add tour package
+tourPackageRouter.post(
+  '/:id/tour_packages',
+  authMiddleware.verifyUser,
+  authMiddleware.checkAdminRole,
+  tourPackageInstance.createTourPackage
+);
 
-// get a tourPackage
-tourPackageRouter.get('/:id');
+// update tour package
+tourPackageRouter.put(
+  '/:id/tour_packages/:tid',
+  authMiddleware.verifyUser,
+  authMiddleware.checkAdminRole,
+  tourPackageInstance.updateTourPackage
+);
+
+// delete tour package
+tourPackageRouter.delete(
+  '/:id/tour_packages/:tid',
+  authMiddleware.verifyUser,
+  authMiddleware.checkAdminRole,
+  tourPackageInstance.deleteTourPackage
+);
 
 export default tourPackageRouter;
