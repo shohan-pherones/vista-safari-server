@@ -8,7 +8,7 @@ const authMiddleware = new AuthMiddleware();
 const paymentInstance = new PaymentController();
 
 paymentRouter.post(
-  '/',
+  '/create-checkout-session',
   authMiddleware.verifyUser,
   paymentInstance.createPayment
 );
