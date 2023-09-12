@@ -1,17 +1,16 @@
 import express, { Router } from 'express';
+import AuthMiddleware from '../middlewares/auth.middleware';
+import PaymentController from '../controllers/payment.controller';
 
 const paymentRouter: Router = express.Router();
 
-// make a payment for a booking and an user
-paymentRouter.post('/bookings/:id/users/:id');
+const authMiddleware = new AuthMiddleware();
+const paymentInstance = new PaymentController();
 
-// get all payments for an user
-paymentRouter.get('/users/:id');
-
-// get a payment for an user
-paymentRouter.get('/:id/users/:id');
-
-// get all payments
-paymentRouter.get('/');
+paymentRouter.post(
+  '/',
+  authMiddleware.verifyUser,
+  paymentInstance.createPayment
+);
 
 export default paymentRouter;
