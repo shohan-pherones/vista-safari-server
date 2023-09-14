@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import SpotModel from '../models/spot.model';
 import { handleError } from '../errors/handle.error';
+import SpotModel from '../models/spot.model';
 import mongoose from 'mongoose';
 import LocationModel from '../models/location.model';
 

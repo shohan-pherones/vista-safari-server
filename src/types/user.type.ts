@@ -1,6 +1,5 @@
 import { Document } from 'mongoose';
 import { Booking } from './booking.type';
-import { Payment } from './payment.type';
 
 export type User = {
   name: string;
@@ -11,5 +10,4 @@ export type User = {
   phoneNumber?: string;
   role: 'user' | 'admin';
   bookings: Booking[];
-  payments: Payment[];
 } & Document;

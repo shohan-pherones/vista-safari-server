@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
+import { handleError } from '../errors/handle.error';
 import mongoose from 'mongoose';
 import BookingModel from '../models/booking.model';
-import { handleError } from '../errors/handle.error';
 import UserModel from '../models/user.model';
 import TourPackageModel from '../models/tour_package.model';
 

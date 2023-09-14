@@ -41,12 +41,6 @@ const userSchema = new Schema<User>(
         ref: 'Booking',
       },
     ],
-    payments: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Payment',
-      },
-    ],
   },
   {
     timestamps: true,

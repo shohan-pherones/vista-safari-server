@@ -11,10 +11,6 @@ const bookingScheme = new Schema<Booking>(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'TourPackage',
     },
-    payment: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Payment',
-    },
   },
   {
     timestamps: true,
