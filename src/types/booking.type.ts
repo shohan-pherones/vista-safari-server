@@ -5,4 +5,5 @@ import { TourPackage } from './tour_package.type';
 export type Booking = {
   user: User;
   tourPackage: TourPackage;
+  seats: number;
 } & Document;

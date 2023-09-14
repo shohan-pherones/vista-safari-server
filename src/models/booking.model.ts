@@ -11,6 +11,7 @@ const bookingScheme = new Schema<Booking>(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'TourPackage',
     },
+    seats: { type: Number, required: true },
   },
   {
     timestamps: true,

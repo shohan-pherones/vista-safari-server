@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { handleError } from '../errors/handle.error';
+import { Booking } from '../types/booking.type';
 import mongoose from 'mongoose';
 import BookingModel from '../models/booking.model';
 import UserModel from '../models/user.model';
@@ -12,6 +13,7 @@ export default class BookingController {
     try {
       const { uid, tid } = req.params;
       const userId = req?.user?._id;
+      const { seats } = req.body;
 
       if (!mongoose.Types.ObjectId.isValid(uid)) {
         res.status(404).json({ message: 'User not found' });
@@ -28,10 +30,36 @@ export default class BookingController {
         return;
       }
 
+      const user = await UserModel.findById(uid).populate('bookings');
+
+      const alreadyBooked = user?.bookings.find(
+        (booking: Booking) => tid === booking?.tourPackage.toString()
+      );
+
+      if (alreadyBooked) {
+        res.status(403).json({ message: 'Tour package already booked' });
+        return;
+      }
+
+      const tourPackage = await TourPackageModel.findById(tid);
+
+      if (!tourPackage) {
+        res.status(404).json({ message: 'Tour Package not found' });
+        return;
+      }
+
+      const availableSeats = tourPackage.availableSeats;
+
+      if (availableSeats < 1 || seats > availableSeats) {
+        res.status(400).json({ message: 'Seat not available' });
+        return;
+      }
+
       await Promise.resolve().then(async () => {
         const booking = await BookingModel.create({
           user: uid,
           tourPackage: tid,
+          seats,
         });
 
         await UserModel.findByIdAndUpdate(uid, {
@@ -43,6 +71,9 @@ export default class BookingController {
         await TourPackageModel.findByIdAndUpdate(tid, {
           $addToSet: {
             bookings: booking._id,
+          },
+          $inc: {
+            availableSeats: -seats,
           },
         });
 
@@ -134,8 +165,21 @@ export default class BookingController {
         return;
       }
 
+      const isExist = await BookingModel.findById(bid);
+
+      if (!isExist) {
+        res.status(404).json({ message: 'Booking not found' });
+        return;
+      }
+
       await Promise.resolve().then(async () => {
         const booking = await BookingModel.findByIdAndDelete(bid);
+
+        await TourPackageModel.findByIdAndUpdate(booking?.tourPackage, {
+          $inc: {
+            availableSeats: booking?.seats,
+          },
+        });
 
         res.status(200).json(booking);
       });

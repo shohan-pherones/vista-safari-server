@@ -6,6 +6,9 @@ const tourPackageSchema = new Schema<TourPackage>(
     name: { type: String, required: true },
     price: { type: Number, required: true },
     date: { type: String, required: true },
+    transport: { type: String, required: true },
+    limit: { type: Number, required: true },
+    availableSeats: { type: Number, required: true },
     location: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Location',

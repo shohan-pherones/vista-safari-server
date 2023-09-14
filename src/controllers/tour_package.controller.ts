@@ -77,7 +77,7 @@ export default class TourPackageController {
   public async createTourPackage(req: Request, res: Response): Promise<void> {
     try {
       const { id } = req.params;
-      const { name, price, date } = req.body;
+      const { name, price, date, limit, transport } = req.body;
 
       if (!mongoose.Types.ObjectId.isValid(id)) {
         res.status(404).json({ message: 'Location not found' });
@@ -89,7 +89,10 @@ export default class TourPackageController {
           name,
           price,
           date,
+          limit,
           location: id,
+          availableSeats: limit,
+          transport,
         });
 
         await LocationModel.findByIdAndUpdate(id, {
@@ -108,7 +111,7 @@ export default class TourPackageController {
   public async updateTourPackage(req: Request, res: Response): Promise<void> {
     try {
       const { id, tid } = req.params;
-      const { name, photoUrl } = req.body;
+      const { name, photoUrl, date, limit, transport } = req.body;
 
       if (!mongoose.Types.ObjectId.isValid(id)) {
         res.status(404).json({ message: 'Location not found' });
@@ -120,12 +123,22 @@ export default class TourPackageController {
         return;
       }
 
+      const prevTourPackage = await TourPackageModel.findById(tid);
+      const prevLimit = prevTourPackage?.limit || 0;
+      const prevAvailableSeats = prevTourPackage?.availableSeats || 0;
+      const prevBookedSeats = prevLimit - prevAvailableSeats;
+
       await Promise.resolve().then(async () => {
         const tourPackage = await TourPackageModel.findByIdAndUpdate(
           tid,
           {
             name,
             photoUrl,
+            date,
+            limit,
+            availableSeats:
+              limit - prevBookedSeats < 0 ? 0 : limit - prevBookedSeats,
+            transport,
           },
           { new: true }
         );
