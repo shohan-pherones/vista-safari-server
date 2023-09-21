@@ -98,13 +98,6 @@ Vista Safari is a comprehensive travel booking and exploration platform that all
 | Payment     | {}     |
 | Seats       | Number |
 
-### Payment
-
-| Field   | Type |
-| ------- | ---- |
-| User    | {}   |
-| Booking | {}   |
-
 ## API Routes
 
 | SL No. | HTTP Verb | Endpoint                                    | Description                                  | Permission |
