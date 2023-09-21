@@ -23,9 +23,7 @@
     "helmet": "^7.0.0",
     "hpp": "^0.2.3",
     "jsonwebtoken": "^9.0.2",
-    "moment": "^2.29.4",
     "mongoose": "^7.5.0",
-    "node-cron": "^3.0.2",
     "stripe": "^13.5.0",
     "validator": "^13.11.0"
   },
@@ -37,7 +35,6 @@
     "@types/jsonwebtoken": "^9.0.2",
     "@types/morgan": "^1.9.5",
     "@types/node": "^20.5.8",
-    "@types/node-cron": "^3.0.8",
     "@types/validator": "^13.11.1",
     "@typescript-eslint/eslint-plugin": "^6.5.0",
     "@typescript-eslint/parser": "^6.5.0",

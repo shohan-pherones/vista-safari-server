@@ -1,5 +1,4 @@
 import express, { Application, Request, Response } from 'express';
-import { startCron } from './lib/cron.lib';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
@@ -62,7 +61,6 @@ class App {
 
         this.app.listen(PORT, () => {
           console.log(`✅ Server is up and running on port: ${PORT}`);
-          startCron();
         });
       })
       .catch((error) => {
