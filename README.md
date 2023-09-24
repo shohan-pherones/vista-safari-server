@@ -150,4 +150,4 @@ Vista Safari is a comprehensive travel booking and exploration platform that all
 
 ## Conclusion
 
-Vista Safari is your gateway to unforgettable travel experiences. Whether you're a user eager to explore new destinations or an admin managing the travel platform, Vista Safari provides the tools and features you need. Start your journey with Vista Safari today!
+Vista Safari is your gateway to unforgettable travel experiences. Whether you're a user eager to explore new destinations or an admin managing the travel platform, Vista Safari provides the tools and features you need. Start your journey with Vista Safari today.
