@@ -11,7 +11,7 @@ class LocationController {
     async getAllLocations(req, res) {
         try {
             await Promise.resolve().then(async () => {
-                const locations = await location_model_1.default.find({}).populate('tourPackage');
+                const locations = await location_model_1.default.find({}).populate('tourPackages');
                 res.status(200).json(locations);
             });
         }
