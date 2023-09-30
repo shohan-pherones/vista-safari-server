@@ -9,7 +9,7 @@ export default class LocationController {
   public async getAllLocations(req: Request, res: Response): Promise<void> {
     try {
       await Promise.resolve().then(async () => {
-        const locations = await LocationModel.find({});
+        const locations = await LocationModel.find({}).populate('tourPackage');
 
         res.status(200).json(locations);
       });
