@@ -3,7 +3,7 @@ import { Booking } from './booking.type';
 
 export type User = {
   name: string;
-  photoUrl: string;
+  photoUrl?: string;
   email: string;
   password: string;
   address?: string;

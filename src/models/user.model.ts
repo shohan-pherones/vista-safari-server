@@ -12,7 +12,6 @@ const userSchema = new Schema<User>(
     },
     photoUrl: {
       type: String,
-      required: true,
     },
     email: {
       type: String,
@@ -55,8 +54,8 @@ userSchema.statics.register = async function (
   address,
   phoneNumber
 ): Promise<User> {
-  if (!name || !photoUrl || !email || !password) {
-    throw new Error('Must fill name, photoUrl, email and password');
+  if (!name || !email || !password) {
+    throw new Error('Must fill name, email and password');
   }
 
   // existing email
