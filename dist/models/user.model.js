@@ -36,7 +36,6 @@ const userSchema = new mongoose_1.Schema({
     },
     photoUrl: {
         type: String,
-        required: true,
     },
     email: {
         type: String,
@@ -69,8 +68,8 @@ const userSchema = new mongoose_1.Schema({
     timestamps: true,
 });
 userSchema.statics.register = async function (name, photoUrl, email, password, address, phoneNumber) {
-    if (!name || !photoUrl || !email || !password) {
-        throw new Error('Must fill name, photoUrl, email and password');
+    if (!name || !email || !password) {
+        throw new Error('Must fill name, email and password');
     }
     // existing email
     const existingUser = await this.findOne({ email });
