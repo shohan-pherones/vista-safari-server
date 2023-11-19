@@ -1,7 +1,7 @@
-import { Request, Response, NextFunction } from 'express';
-import { User } from '../types/user.type';
+import { NextFunction, Request, Response } from 'express';
 import JWTTokenManager from '../manager/jwt_token.manager';
 import UserModel from '../models/user.model';
+import { User } from '../types/user.type';
 
 interface JwtPayload {
   id: string;

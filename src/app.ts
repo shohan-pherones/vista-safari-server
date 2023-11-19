@@ -1,18 +1,18 @@
-import express, { Application, Request, Response } from 'express';
-import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import morgan from 'morgan';
-import helmet from 'helmet';
+import express, { Application, Request, Response } from 'express';
 import mongoSanitize from 'express-mongo-sanitize';
+import helmet from 'helmet';
 import hpp from 'hpp';
-import userRouter from './routes/user.route';
+import mongoose from 'mongoose';
+import morgan from 'morgan';
+import bookingRouter from './routes/booking.route';
 import locationRouter from './routes/location.route';
-import spotRouter from './routes/spot.route';
 import resortRouter from './routes/resort.route';
 import restaurantRouter from './routes/restaurant.route';
+import spotRouter from './routes/spot.route';
 import tourPackageRouter from './routes/tour_package.route';
-import bookingRouter from './routes/booking.route';
+import userRouter from './routes/user.route';
 
 class App {
   private app: Application;

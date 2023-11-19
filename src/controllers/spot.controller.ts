@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
-import { handleError } from '../errors/handle.error';
-import SpotModel from '../models/spot.model';
 import mongoose from 'mongoose';
+import { handleError } from '../errors/handle.error';
 import LocationModel from '../models/location.model';
+import SpotModel from '../models/spot.model';
 
 export default class SpotController {
   constructor() {}

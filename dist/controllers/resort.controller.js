@@ -3,10 +3,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const handle_error_1 = require("../errors/handle.error");
-const resort_model_1 = __importDefault(require("../models/resort.model"));
 const mongoose_1 = __importDefault(require("mongoose"));
+const handle_error_1 = require("../errors/handle.error");
 const location_model_1 = __importDefault(require("../models/location.model"));
+const resort_model_1 = __importDefault(require("../models/resort.model"));
 class ResortController {
     constructor() { }
     async getAllResorts(req, res) {

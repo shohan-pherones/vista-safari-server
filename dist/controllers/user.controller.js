@@ -3,10 +3,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const handle_error_1 = require("../errors/handle.error");
-const user_model_1 = __importDefault(require("../models/user.model"));
-const jwt_token_manager_1 = __importDefault(require("../manager/jwt_token.manager"));
 const mongoose_1 = __importDefault(require("mongoose"));
+const handle_error_1 = require("../errors/handle.error");
+const jwt_token_manager_1 = __importDefault(require("../manager/jwt_token.manager"));
+const user_model_1 = __importDefault(require("../models/user.model"));
 const jwtTokenManager = new jwt_token_manager_1.default();
 class UserController {
     constructor() { }

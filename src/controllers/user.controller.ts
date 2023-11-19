@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
-import { handleError } from '../errors/handle.error';
-import UserModel from '../models/user.model';
-import JWTTokenManager from '../manager/jwt_token.manager';
 import mongoose from 'mongoose';
+import { handleError } from '../errors/handle.error';
+import JWTTokenManager from '../manager/jwt_token.manager';
+import UserModel from '../models/user.model';
 
 const jwtTokenManager = new JWTTokenManager();
 

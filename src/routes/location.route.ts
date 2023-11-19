@@ -1,6 +1,6 @@
 import express, { Router } from 'express';
-import AuthMiddleware from '../middlewares/auth.middleware';
 import LocationController from '../controllers/location.controller';
+import AuthMiddleware from '../middlewares/auth.middleware';
 
 const locationRouter: Router = express.Router();
 

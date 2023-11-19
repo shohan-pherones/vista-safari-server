@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
-import { handleError } from '../errors/handle.error';
-import ResortModel from '../models/resort.model';
 import mongoose from 'mongoose';
+import { handleError } from '../errors/handle.error';
 import LocationModel from '../models/location.model';
+import ResortModel from '../models/resort.model';
 
 export default class ResortController {
   constructor() {}

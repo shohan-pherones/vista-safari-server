@@ -3,21 +3,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
-const mongoose_1 = __importDefault(require("mongoose"));
 const cors_1 = __importDefault(require("cors"));
 const dotenv_1 = __importDefault(require("dotenv"));
-const morgan_1 = __importDefault(require("morgan"));
-const helmet_1 = __importDefault(require("helmet"));
+const express_1 = __importDefault(require("express"));
 const express_mongo_sanitize_1 = __importDefault(require("express-mongo-sanitize"));
+const helmet_1 = __importDefault(require("helmet"));
 const hpp_1 = __importDefault(require("hpp"));
-const user_route_1 = __importDefault(require("./routes/user.route"));
+const mongoose_1 = __importDefault(require("mongoose"));
+const morgan_1 = __importDefault(require("morgan"));
+const booking_route_1 = __importDefault(require("./routes/booking.route"));
 const location_route_1 = __importDefault(require("./routes/location.route"));
-const spot_route_1 = __importDefault(require("./routes/spot.route"));
 const resort_route_1 = __importDefault(require("./routes/resort.route"));
 const restaurant_route_1 = __importDefault(require("./routes/restaurant.route"));
+const spot_route_1 = __importDefault(require("./routes/spot.route"));
 const tour_package_route_1 = __importDefault(require("./routes/tour_package.route"));
-const booking_route_1 = __importDefault(require("./routes/booking.route"));
+const user_route_1 = __importDefault(require("./routes/user.route"));
 class App {
     constructor() {
         this.app = (0, express_1.default)();

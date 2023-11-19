@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import { handleError } from '../errors/handle.error';
 import mongoose from 'mongoose';
+import { handleError } from '../errors/handle.error';
 import LocationModel from '../models/location.model';
 import TourPackageModel from '../models/tour_package.model';
 

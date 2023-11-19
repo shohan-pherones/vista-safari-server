@@ -25,6 +25,7 @@ Vista Safari is a comprehensive travel booking and exploration platform that all
 - Mongoose
 - TypeScript
 - JSON Web Tokens (JWT) for authentication
+- Docker
 
 ## Models
 
@@ -148,7 +149,7 @@ Vista Safari is a comprehensive travel booking and exploration platform that all
 3. Run `yarn` to install project dependencies.
 4. Start the development server with `yarn dev`.
 
-Or if you have Docker and Docker Compose installed on your machine, you can simply execute `docker-compose build` and `docker-compose up` to start the app.
+If you have Docker and Docker Compose installed on your machine, you can simply execute `docker-compose build` and `docker-compose up` to start the app. Additionally, to access the Docker image, you can visit [https://hub.docker.com/r/spectrashohan/vista-safari](https://hub.docker.com/r/spectrashohan/vista-safari).
 
 ## Conclusion
 

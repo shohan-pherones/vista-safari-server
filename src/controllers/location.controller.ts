@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
+import mongoose from 'mongoose';
 import { handleError } from '../errors/handle.error';
 import LocationModel from '../models/location.model';
-import mongoose from 'mongoose';
 
 export default class LocationController {
   constructor() {}

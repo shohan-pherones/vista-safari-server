@@ -1,6 +1,6 @@
 import { Document } from 'mongoose';
-import { User } from './user.type';
 import { TourPackage } from './tour_package.type';
+import { User } from './user.type';
 
 export type Booking = {
   user: User;

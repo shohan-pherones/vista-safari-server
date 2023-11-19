@@ -1,8 +1,8 @@
-import { User } from '../types/user.type';
-import { UserModelInterface } from '../interfaces/user.interface';
+import bcrypt from 'bcrypt';
 import mongoose, { Schema, model } from 'mongoose';
 import validator from 'validator';
-import bcrypt from 'bcrypt';
+import { UserModelInterface } from '../interfaces/user.interface';
+import { User } from '../types/user.type';
 
 const userSchema = new Schema<User>(
   {

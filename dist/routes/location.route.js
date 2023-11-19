@@ -4,8 +4,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const auth_middleware_1 = __importDefault(require("../middlewares/auth.middleware"));
 const location_controller_1 = __importDefault(require("../controllers/location.controller"));
+const auth_middleware_1 = __importDefault(require("../middlewares/auth.middleware"));
 const locationRouter = express_1.default.Router();
 const authMiddleware = new auth_middleware_1.default();
 const locationInstance = new location_controller_1.default();
